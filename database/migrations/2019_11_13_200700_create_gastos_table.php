@@ -17,13 +17,14 @@ class CreateGastosTable extends Migration
             $table->bigIncrements('id');
             $table->date('fecha');
             $table->string('descripcion');
-            $table->decimal('importe',5,2);
+            $table->decimal('importe',13,2);
             $table->string('concepto');
-            $table->integer('id_grupo');
+            $table->unsignedInteger('grupo_id'); 
             $table->integer('id_pago');
             $table->integer('id_factura');
             $table->integer('id_proveedor');
             $table->integer('id_costos'); 
+            $table->integer('id_sucursal'); 
             $table->timestamps();
         });
     }
@@ -35,6 +36,7 @@ class CreateGastosTable extends Migration
      */
     public function down()
     {
+     
         Schema::dropIfExists('gastos');
     }
 }

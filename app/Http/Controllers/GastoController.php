@@ -1,22 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Gasto;
+use Illuminate\Http\Request; 
 
 class GastoController extends Controller
 {
+    /**
+     * Display the specified resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function init()
+    {
+        //
+       
+        return view('gastos.init');
+      
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
         $gastos=Gasto::orderBy('id','ASC')->paginate(3);
-	    view( 'Gasto.index',  compact ('gastos'));
+    //   $gastos=Gasto::all();
+          return view( 'gastos.index',  compact ('gastos'));     
     }
 
     /**
@@ -27,7 +40,8 @@ class GastoController extends Controller
     public function create()
     {
         //
-        return view('Gasto.create');
+      return view('gastos.create');
+     
     }
 
     /**
@@ -39,11 +53,16 @@ class GastoController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,['descripcion'=>'required','fecha'=>'required','concepto'=>'required','importe'=>'required']);
+        $this->validate($request,['descripcion'=>'required',
+                                    'fecha'=>'required',
+                                    'concepto'=>'required',
+                                    'importe'=>'required',
+                                    'grupo_id'=>'required',
+                                    'id_sucursal'=>'required']);
         Gasto::create($request->all());
-        return redirect()->route('gasto.index')->with('success','Registro cargado OK');
+        return redirect()->route('gastos.index')->with('success','Registro cargado OK');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -53,8 +72,9 @@ class GastoController extends Controller
     public function show($id)
     {
         //
-        $gastos=Gasto::find($id);
-        return view('gasto.show',compact('gastos'));
+       $gastos=Gasto::find($id);
+        return view('gastos.show',compact('gastos'));
+      
     }
 
     /**
@@ -66,8 +86,9 @@ class GastoController extends Controller
     public function edit($id)
     {
         //
-        $gastos=Gasto::find($id);
-        return view('gasto.edit',compact('gastos'));
+         $gasto=Gasto::find($id); 
+         return view('gastos.edit',compact('gasto'));
+       
     }
 
     /**
@@ -80,9 +101,9 @@ class GastoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,['descripcion'=>'required','fecha'=>'required','concepto'=>'required','importe'=>'required']);
+        $this->validate($request,['descripcion'=>'required','fecha'=>'required','concepto'=>'required','importe'=>'required','grupo_id'=>'required']);
         $gastos=Gasto::find($id)->update($request->all());
-        return redirect()->route('gasto.index')->with('success','Registro actualizado OK');
+        return redirect()->route('gastos.index')->with('success','Registro actualizado OK');
       
     }
 
@@ -95,7 +116,9 @@ class GastoController extends Controller
     public function destroy($id)
     {
         //
+
+      
          Gasto::find($id)->delete();
-         return redirect()->route('gasto.index')->with('success','Registro eliminado OK');
+         return redirect()->route('gastos.index')->with('success','Registro eliminado OK');
     }
 }

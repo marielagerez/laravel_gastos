@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>SystemAR</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,17 +81,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    SystemAR
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                
+                   <a href="https://">Blog</a>
+                    <a href="https://">Tutoriales</a>
+                    @auth
+                    <a href="{{ route('home') }}">registrAR</a>   
+                    <a href="https://laracasts.com">regAR</a>   
+                    <a href="https://laracasts.com">facturAR</a>   
+                   @endauth
                 </div>
             </div>
         </div>

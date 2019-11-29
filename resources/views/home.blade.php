@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <div class="col-xs-12 col-sm-12 col-md-12" >
-									<a   href=" " class="btn btn-info btn-block" > Pick</a>
+									<a   href="{{route('gastos.index')}}" class="btn btn-info btn-block" > Pick</a>
                     </div>	
                      
                 </div>

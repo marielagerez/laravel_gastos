@@ -19,7 +19,7 @@ class CreateGastosTable extends Migration
             $table->string('descripcion');
             $table->decimal('importe',13,2);
             $table->string('concepto');
-            $table->unsignedInteger('grupo_id'); 
+            $table->unsignedInteger('id_grupo'); 
             $table->integer('id_pago');
             $table->integer('id_factura');
             $table->integer('id_proveedor');

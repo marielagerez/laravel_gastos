@@ -6,17 +6,21 @@ use Illuminate\Http\Request;
 
 class GastoController extends Controller
 {
+    
     /**
-     * Display the specified resource.
-     * 
+     * Display a listing of the resource.
+     *
      * @return \Illuminate\Http\Response
      */
-    public function init()
+    
+    public function lista()
     {
         //
-       
-        return view('gastos.init');
-      
+        //$gastos=Gasto::all();
+        $gastos=Gasto::select('descripcion','concepto','fecha')->get();
+        dd($gastos);
+    //   $gastos=Gasto::all();
+          return $gastos;     
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +31,7 @@ class GastoController extends Controller
     public function index()
     {
         //
-        $gastos=Gasto::orderBy('id','ASC')->paginate(3);
+          $gastos=Gasto::orderBy('id','ASC')->paginate(3);
     //   $gastos=Gasto::all();
           return view( 'gastos.index',  compact ('gastos'));     
     }
@@ -72,7 +76,9 @@ class GastoController extends Controller
     public function show($id)
     {
         //
-       $gastos=Gasto::find($id);
+        $gastos=Gasto::find($id);
+
+        dd($gastos);
         return view('gastos.show',compact('gastos'));
       
     }
@@ -116,9 +122,19 @@ class GastoController extends Controller
     public function destroy($id)
     {
         //
-
-      
          Gasto::find($id)->delete();
          return redirect()->route('gastos.index')->with('success','Registro eliminado OK');
+    }
+    /**
+     * Display the specified resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function init()
+    {
+        //
+       
+        return view('gastos.init');
+      
     }
 }

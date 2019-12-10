@@ -1,24 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Sucursal;
+use Illuminate\Http\Request; 
 
 class SucursalController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function lista()
+    {
+        //
+        //$sucursales=Sucursal::all();
+        $sucursales=Sucursal::all();
+        dd($sucursales);
+    //   $sucursales=Sucursal::all();
+          return $sucursales;     
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
     public function index()
     {
-        // 
-        
-        return Sucursal::all();
-        /*$sucursales=Sucursal::all();
-        return view( 'Sucursal.index',  compact ('sucursales'));  */
+        //
+          $sucursales=Sucursal::orderBy('id','ASC')->paginate(3);
+          //   $sucursales=Sucursal::all();
+          return view( 'sucursales.index',  compact ('sucursales'));     
     }
 
     /**
@@ -29,6 +44,8 @@ class SucursalController extends Controller
     public function create()
     {
         //
+      return view('sucursales.create');
+     
     }
 
     /**
@@ -39,9 +56,17 @@ class SucursalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+       /* $this->validate($request,['descripcion'=>'required',
+                                    'fecha'=>'required',
+                                    'concepto'=>'required',
+                                    'importe'=>'required',
+                                    'grupo_id'=>'required',
+                                    'id_sucursal'=>'required']);*/
+        Sucursal::create($request->all());
+        return redirect()->route('sucursales.index')->with('success','Registro cargado OK');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -51,6 +76,11 @@ class SucursalController extends Controller
     public function show($id)
     {
         //
+        $sucursales=Sucursal::find($id);
+
+        dd($sucursales);
+        return view('sucursales.show',compact('sucursales'));
+      
     }
 
     /**
@@ -62,6 +92,9 @@ class SucursalController extends Controller
     public function edit($id)
     {
         //
+         $gasto=Sucursal::find($id); 
+         return view('sucursales.edit',compact('gasto'));
+       
     }
 
     /**
@@ -74,6 +107,10 @@ class SucursalController extends Controller
     public function update(Request $request, $id)
     {
         //
+       // $this->validate($request,[]);
+        $sucursales=Sucursal::find($id)->update($request->all());
+        return redirect()->route('sucursales.index')->with('success','Registro actualizado OK');
+      
     }
 
     /**
@@ -85,5 +122,19 @@ class SucursalController extends Controller
     public function destroy($id)
     {
         //
+         Sucursal::find($id)->delete();
+         return redirect()->route('sucursales.index')->with('success','Registro eliminado OK');
+    }
+    /**
+     * Display the specified resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function init()
+    {
+        //
+       
+        return view('sucursales.init');
+      
     }
 }

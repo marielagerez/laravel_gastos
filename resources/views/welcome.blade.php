@@ -89,7 +89,7 @@
                    <a href="https://">Blog</a>
                     <a href="https://">Tutoriales</a>
                     @auth
-                    <a href="{{ route('home') }}">registrAR</a>   
+                    <a href="{{ route('sucursales.index') }}">registrAR</a>   
                     <a href="https://laracasts.com">regAR</a>   
                     <a href="https://laracasts.com">facturAR</a>   
                    @endauth

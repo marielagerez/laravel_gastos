@@ -14,9 +14,9 @@
                         </div>
                     @endif
                     <div class="col-xs-12 col-sm-12 col-md-12" >
-                                    <a   href=" " class="btn btn-info btn-block" > Ver gastos</a>
-                                    <a   href=" " class="btn btn-info btn-block" > Ver Sucursal</a>
-                                    <a   href=" " class="btn btn-info btn-block" > Ver Reportes</a> 
+                                    <a   href="{{ route('logout') }}"  class="btn btn-info btn-block" > Identificadores ingresados </a>
+                                    <a   href="{{ route('logout') }}" class="btn btn-info btn-block" > Ver Sucursal</a>
+                                    <a   href="{{ route('gastos.init') }}"  class="btn btn-info btn-block" > Ver Reportes</a> 
                     </div>	
                      
                 </div>

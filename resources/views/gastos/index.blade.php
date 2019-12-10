@@ -1,9 +1,13 @@
 @extends('layouts.app')
-@section('content')
+@section('parent.content') 
+   
+
+@section('data')
 <div class="container">
 <section class="content" >
 <div class="row  "> 
-<div class="col-md-8 col-md-offset-2">
+<!-- <div class="col-md-8 col-md-offset-2"> -->
+<div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="pull-left"><h3>Lista de Registro de Gastos</h3></div>
@@ -55,6 +59,9 @@
     </div>
   </div> 
 </div>
+<div class="btn-group">
+              <a href="{{ route('sucursales.index') }}" class="btn btn-info" >Volver</a>
+            </div>
 </section>
 </div>
 @endsection

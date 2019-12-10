@@ -23,7 +23,7 @@ class CreateSucursalTable extends Migration
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
